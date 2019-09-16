@@ -37,23 +37,23 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-#      # run test
+      # run test
 #      - run: echo "test finished"
-##      - run: mvn test
+      - run: mvn test
 
 
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - Testing
-      - run:
-          name: MVN TEST
-          command:  mvn test
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
+#  test:
+#    docker:
+#      - image: circleci/openjdk:8-jdk
+#    steps:
+#      - Testing
+#      - run:
+#          name: MVN TEST
+#          command:  mvn test
+#
+#workflows:
+#  version: 2
+#  build_and_test:
+#    jobs:
+#      - build
+#      - test
