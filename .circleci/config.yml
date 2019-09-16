@@ -38,5 +38,5 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run test
-      - run: echo "test finished"
-#      - run: sh 'mvn test'
+#      - run: echo "test finished"
+      - run: mvn test
