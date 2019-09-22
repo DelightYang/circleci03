@@ -43,6 +43,7 @@ jobs:
       - run: mvn test
 
       # test docker build
+      - run: service docker start
       - run: docker build -t 1357111/circleci03 .
 
 #  test:
