@@ -37,11 +37,29 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-
       # create package
       - run: mvn clean package
       # test
       - run: mvn test
+
+
+  deploy:
+    working_directory: ~/app
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
+
 
       # test docker build
 #      - run: sudo docker build -t 1357111/circleci03 .
