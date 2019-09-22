@@ -43,7 +43,7 @@ jobs:
       - run: mvn test
 
       # test docker build
-      - run: systemctl start docker
+      - run: docker-machine restart&&eval "$(docker-machine env default)"&&docker-machine env
       - run: docker build -t 1357111/circleci03 .
 
 #  test:
