@@ -43,21 +43,9 @@ jobs:
       - run: mvn test
 
       # test docker build
-#      - run: docker build -t 1357111/circleci03 .
+      - run: sudo docker build -t 1357111/circleci03 .
 
 #  test:
 #    override:
       # 测试是否可以正常docker run
-#      - run: docker run -p 8080:8080 -d 1357111/circleci03
-
-
-    machine:
-      # 環境改成 docker
-      services:
-        - docker
-
-        # 建構方式使用 docker build
-        - run: docker build -t 1357111/circleci03 .
-
-    test:
-        - run: docker run -p 8080:8080 -d 1357111/circleci03
+      - run: sudo docker run -p 8080:8080 -d 1357111/circleci03
