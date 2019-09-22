@@ -61,7 +61,15 @@ jobs:
             sudo pip install awsebcli --upgrade
 
 
-      # test docker build
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy
+
+
+# test docker build
 #      - run: sudo docker build -t 1357111/circleci03 .
 
       # 测试是否可以正常docker run
