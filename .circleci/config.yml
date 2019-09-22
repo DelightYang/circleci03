@@ -29,7 +29,7 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-#            it can work offline
+      # it can work offline
       - run: mvn dependency:go-offline
 
       - save_cache:
@@ -37,23 +37,16 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # run test
+      # create package
       - run: mvn clean package
+      # test
       - run: mvn test
 
+      # test docker build
+      - run: docker build -t 1357111/circleci03 .
 
-  machine:
-    # 环境改成 docker
-    services:
-      - docker
-
-  dependencies:
-    override:
-      # 构建方式使用 docker build
-      - docker build -t 1357111/circleci03 .
-
-  test:
-    override:
+#  test:
+#    override:
       # 测试是否可以正常docker run
-      - docker run -p 8080:8080 -d 1357111/circleci03
+      - run: docker run -p 8080:8080 -d 1357111/circleci03
 
