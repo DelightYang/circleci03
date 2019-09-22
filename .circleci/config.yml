@@ -56,11 +56,8 @@ jobs:
       services:
         - docker
 
-    dependencies:
-      override:
         # 建構方式使用 docker build
-        - docker build -t 1357111/circleci03 .
+        - run: docker build -t 1357111/circleci03 .
 
     test:
-      override:
-        - docker run -p 8080:8080 -d 1357111/circleci03
+        - run: docker run -p 8080:8080 -d 1357111/circleci03
