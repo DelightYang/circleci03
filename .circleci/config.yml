@@ -38,14 +38,13 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
 
-
       # create package
       - run: mvn clean package
       # test
       - run: mvn test
 
       # test docker build
-      - run: sudo docker build -t 1357111/circleci03 .
+#      - run: sudo docker build -t 1357111/circleci03 .
 
       # 测试是否可以正常docker run
-      - run: sudo docker run -p 8080:8080 -d 1357111/circleci03
+#      - run: sudo docker run -p 8080:8080 -d 1357111/circleci03
